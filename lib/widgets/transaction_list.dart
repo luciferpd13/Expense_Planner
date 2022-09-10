@@ -37,7 +37,7 @@ class TransactionList extends StatelessWidget {
                 // return Card(
                 //   child: Row(children: [
                 //     Container(
-                //       margin: EdgeInsets.symmetric(
+                //       margin: const EdgeInsets.symmetric(
                 //         vertical: 10,
                 //         horizontal: 15,
                 //       ),
@@ -54,7 +54,7 @@ class TransactionList extends StatelessWidget {
                 //         color: Theme.of(context).primaryColor,
                 //         width: 2,
                 //       )),
-                //       padding: EdgeInsets.all(10),
+                //       padding: const EdgeInsets.all(10),
                 //     ),
                 //     Column(
                 //       crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,12 +79,13 @@ class TransactionList extends StatelessWidget {
                 // );
                 return Card(
                   elevation: 5,
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 30,
                       child: Padding(
-                        padding: EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(6),
                         child: FittedBox(
                           child: Text(
                             '\$${_transactions[index].amount.toStringAsFixed(2)}',
@@ -111,7 +112,7 @@ class TransactionList extends StatelessWidget {
                         onPressed: () {
                           _removeTransaction(_transactions[index].id);
                         },
-                        icon: Icon(Icons.delete)),
+                        icon: const Icon(Icons.delete)),
                   ),
                 );
               },

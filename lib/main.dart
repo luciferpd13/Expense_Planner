@@ -42,9 +42,26 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   static List<Transaction> _transactions = [];
   bool _showChart = false;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
@@ -88,23 +105,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Expense Tracker'),
+            middle: const Text('Expense Tracker'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  child: Icon(CupertinoIcons.add),
+                  child: const Icon(CupertinoIcons.add),
                   onTap: () => _showNewTransaction(context),
                 )
               ],
             ),
           )
         : AppBar(
-            title: Text('Expense Tracker'),
+            title: const Text('Expense Tracker'),
             actions: [
               IconButton(
                   onPressed: () => _showNewTransaction(context),
-                  icon: Icon(Icons.add))
+                  icon: const Icon(Icons.add))
             ],
           );
 
@@ -175,10 +192,10 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : Container(
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     child: FloatingActionButton(
                       backgroundColor: Colors.amber,
-                      child: Icon(Icons.add),
+                      child: const Icon(Icons.add),
                       onPressed: () => _showNewTransaction(context),
                     ),
                   ),
